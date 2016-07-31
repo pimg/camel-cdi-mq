@@ -17,15 +17,25 @@ package nl.rubix.eos.openshift.playground;
 
 import io.fabric8.annotations.Factory;
 import io.fabric8.annotations.ServiceName;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
+import org.apache.camel.PropertyInject;
 
 public class ActiveMQComponentFactory {
+	
+	@PropertyInject("env:broker-amq-tcp_MQ_USERNAME")
+	String mq_username;
+	
+	@PropertyInject("env:broker-amq-tcp_MQ_PASSWORD")
+	String mq_password;
 
     @Factory
     @ServiceName
     public ActiveMQComponent create(@ServiceName ActiveMQConnectionFactory factory) {
         ActiveMQComponent component = new ActiveMQComponent();
+        component.setUserName(mq_username);
+        component.setPassword(mq_password);
         component.setConnectionFactory(factory);
         return component;
     }
