@@ -34,8 +34,8 @@ public class ActiveMQComponentFactory {
     @ServiceName
     public ActiveMQComponent create(@ServiceName ActiveMQConnectionFactory factory) {
         ActiveMQComponent component = new ActiveMQComponent();
-        component.setUserName(mq_username);
-        component.setPassword(mq_password);
+        component.setUserName(factory.getUserName());
+        component.setPassword(factory.getPassword());
         component.setConnectionFactory(factory);
         return component;
     }
