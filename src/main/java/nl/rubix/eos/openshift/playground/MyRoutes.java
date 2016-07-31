@@ -17,7 +17,9 @@ package nl.rubix.eos.openshift.playground;
 
 import io.fabric8.annotations.Alias;
 import io.fabric8.annotations.ServiceName;
+
 import org.apache.activemq.camel.component.ActiveMQComponent;
+import org.apache.camel.PropertyInject;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.cdi.ContextName;
 
@@ -28,6 +30,12 @@ import javax.inject.Inject;
  */
 @ContextName("myCdiCamelContext")
 public class MyRoutes extends RouteBuilder {
+	
+	@PropertyInject("env:BROKER-AMQ-TCP_AMQ_USER")
+	String mq_username;
+	
+	@PropertyInject("env:BROKER-AMQ-TCP_AMQ_PASSWORD")
+	String mq_password;
 
     @Inject
     @ServiceName("broker-amq-tcp")
@@ -37,6 +45,7 @@ public class MyRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("timer://foo")
+        		.log("authenticating to broker with user: " + mq_username)
                 .setBody(constant("Everything is awesome!"))
                 .to("jms:queue:TEST.FOO");
 
