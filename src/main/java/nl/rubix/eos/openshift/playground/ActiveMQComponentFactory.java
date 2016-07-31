@@ -24,7 +24,7 @@ import org.apache.camel.PropertyInject;
 
 public class ActiveMQComponentFactory {
 	
-	@PropertyInject("env:broker-amq-tcp_AMQ_USERNAME")
+	@PropertyInject("env:broker-amq-tcp_AMQ_USER")
 	String mq_username;
 	
 	@PropertyInject("env:broker-amq-tcp_AMQ_PASSWORD")
