@@ -24,10 +24,10 @@ import org.apache.camel.PropertyInject;
 
 public class ActiveMQComponentFactory {
 
-	@PropertyInject("env:AMQ_USER")
+	@PropertyInject(value = "env:AMQ_USER")
 	String mq_username;
 
-	@PropertyInject("env:AMQ_PASSWORD")
+	@PropertyInject(value = "env:AMQ_PASSWORD")
 	String mq_password;
 
     @Factory

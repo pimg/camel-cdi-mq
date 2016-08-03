@@ -31,10 +31,10 @@ import javax.inject.Inject;
 @ContextName("myCdiCamelContext")
 public class MyRoutes extends RouteBuilder {
 
-	@PropertyInject("env:AMQ_USER")
+	@PropertyInject(value = "env:AMQ_USER")
 	String mq_username;
 
-	@PropertyInject("env:AMQ_PASSWORD")
+	@PropertyInject(value = "env:AMQ_PASSWORD")
 	String mq_password;
 
     @Inject
