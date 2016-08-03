@@ -15,6 +15,11 @@
  */
 package nl.rubix.eos.openshift.playground;
 
+import io.fabric8.annotations.Factory;
+import io.fabric8.annotations.ServiceName;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.camel.component.ActiveMQComponent;
 
 public class ActiveMQComponentFactory {
 

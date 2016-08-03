@@ -16,7 +16,12 @@
 package nl.rubix.eos.openshift.playground;
 
 import javax.inject.Inject;
+import io.fabric8.annotations.Alias;		
+import io.fabric8.annotations.ServiceName;
 
+import org.apache.activemq.camel.component.ActiveMQComponent;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.cdi.ContextName;
 /**
  * Configures all our Camel routes, components, endpoints and beans
  */
