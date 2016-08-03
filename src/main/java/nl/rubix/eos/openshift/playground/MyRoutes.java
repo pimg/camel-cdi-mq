@@ -15,14 +15,6 @@
  */
 package nl.rubix.eos.openshift.playground;
 
-import io.fabric8.annotations.Alias;
-import io.fabric8.annotations.ServiceName;
-
-import org.apache.activemq.camel.component.ActiveMQComponent;
-import org.apache.camel.PropertyInject;
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.cdi.ContextName;
-
 import javax.inject.Inject;
 
 /**
@@ -30,12 +22,6 @@ import javax.inject.Inject;
  */
 @ContextName("myCdiCamelContext")
 public class MyRoutes extends RouteBuilder {
-
-	@PropertyInject(value = "env:AMQ_USER", defaultValue = "test")
-	String mq_username;
-
-	@PropertyInject(value = "env:AMQ_PASSWORD", defaultValue = "test")
-	String mq_password;
 
     @Inject
     @ServiceName("broker-amq-tcp")
@@ -45,7 +31,7 @@ public class MyRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("timer://foo")
-        		.log("authenticating to broker with user: " + mq_username)
+        		.log("authenticating to broker with user: " + System.getenv("AMQ_USER"))
                 .setBody(constant("Everything is awesome!"))
                 .to("jms:queue:TEST.FOO");
 
