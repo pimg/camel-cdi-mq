@@ -55,6 +55,14 @@
       "description": "Maven build directory"
     },
     {
+      "name": "AMQ_USER",
+      "description": "Username of the AMQ broker used to authenticate."
+    },
+    {
+      "name": "AMQ_PASSWORD",
+      "description": "Password of the AMQ broker used to authenticate."
+    },
+    {
       "description": "Namespace in which the Fuse ImageStreams are installed. These ImageStreams are normally installed in the openshift namespace. You should only need to modify this if you've installed the ImageStreams in a different namespace/project.",
       "name": "IMAGE_STREAM_NAMESPACE",
       "value": "openshift",
