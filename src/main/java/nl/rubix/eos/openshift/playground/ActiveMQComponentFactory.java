@@ -22,17 +22,16 @@ import org.apache.activemq.camel.component.ActiveMQComponent;
 
 public class ActiveMQComponentFactory {
 
+  @Factory
+  @ServiceName
+  public ActiveMQComponent create(@ServiceName ActiveMQConnectionFactory factory) {
+    factory.setUserName(System.getenv("AMQ_USER"));
+    factory.setPassword(System.getenv("AMQ_PASSWORD"));
 
-    @Factory
-    @ServiceName
-    public ActiveMQComponent create(@ServiceName ActiveMQConnectionFactory factory) {
-        factory.setUserName(System.getenv("AMQ_USER"));
-        factory.setPassword(System.getenv("AMQ_PASSWORD"));
-        
-        ActiveMQComponent component = new ActiveMQComponent();
-        
-        component.setConnectionFactory(factory);
-        return component;
-    }
+    ActiveMQComponent component = new ActiveMQComponent();
+
+    component.setConnectionFactory(factory);
+    return component;
+  }
 
 }

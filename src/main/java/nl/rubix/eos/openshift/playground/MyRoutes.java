@@ -15,9 +15,9 @@
  */
 package nl.rubix.eos.openshift.playground;
 
+import io.fabric8.annotations.*;
+
 import javax.inject.Inject;
-import io.fabric8.annotations.Alias;		
-import io.fabric8.annotations.ServiceName;
 
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.builder.RouteBuilder;
