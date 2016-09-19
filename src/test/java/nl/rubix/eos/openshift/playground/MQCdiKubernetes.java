@@ -23,6 +23,8 @@ import javax.inject.Inject;
 import javax.jms.*;
 import javax.jms.Message;
 
+import nl.rubix.eos.openshift.playground.mq.ActiveMQConfigurer;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.*;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -41,7 +43,8 @@ public class MQCdiKubernetes {
     @Deployment
     public static WebArchive createDeployment() {
         return DeltaspikeTestBase.createDeployment()
-                .addClasses(DeltaspikeTestBase.getDeltaSpikeHolders());
+                .addClasses(DeltaspikeTestBase.getDeltaSpikeHolders())
+                .addClasses(ActiveMQConfigurer.class);
     }
 
     @Test

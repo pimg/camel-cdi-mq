@@ -24,6 +24,8 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 
 import javax.inject.Inject;
 
+import nl.rubix.eos.openshift.playground.mq.ActiveMQConfigurer;
+
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.assertj.core.api.Condition;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -50,7 +52,7 @@ public class KubernetesIntegrationKT {
     public static WebArchive createDeployment() {
         return DeltaspikeTestBase.createDeployment()
                 .addClasses(DeltaspikeTestBase.getDeltaSpikeHolders())
-                .addClasses(ActiveMQComponentFactory.class);
+                .addClasses(ActiveMQComponentFactory.class, ActiveMQConfigurer.class);
     }
 
     @Test
