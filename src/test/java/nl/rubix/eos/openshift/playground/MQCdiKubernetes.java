@@ -15,30 +15,21 @@
  */
 package nl.rubix.eos.openshift.playground;
 
-import javax.inject.Inject;
-import javax.jms.Connection;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageProducer;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-
+import static org.hamcrest.CoreMatchers.*;
 import io.fabric8.annotations.ServiceName;
 import io.fabric8.cdi.deltaspike.DeltaspikeTestBase;
-import nl.rubix.eos.openshift.playground.mq.ActiveMQConfigurer;
+
+import javax.inject.Inject;
+import javax.jms.*;
+import javax.jms.Message;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.command.ActiveMQQueue;
-import org.apache.activemq.command.ActiveMQTextMessage;
+import org.apache.activemq.command.*;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.instanceOf;
 
 @RunWith(Arquillian.class)
 public class MQCdiKubernetes {
@@ -50,8 +41,7 @@ public class MQCdiKubernetes {
     @Deployment
     public static WebArchive createDeployment() {
         return DeltaspikeTestBase.createDeployment()
-                .addClasses(DeltaspikeTestBase.getDeltaSpikeHolders())
-                .addClasses(ActiveMQConfigurer.class);
+                .addClasses(DeltaspikeTestBase.getDeltaSpikeHolders());
     }
 
     @Test

@@ -15,14 +15,14 @@
  */
 package nl.rubix.eos.openshift.playground;
 
-import javax.inject.Inject;
-
+import static io.fabric8.kubernetes.assertions.Assertions.assertThat;
 import io.fabric8.annotations.ServiceName;
 import io.fabric8.arquillian.kubernetes.Session;
 import io.fabric8.cdi.deltaspike.DeltaspikeTestBase;
 import io.fabric8.kubernetes.api.model.Pod;
 import io.fabric8.kubernetes.client.KubernetesClient;
-import nl.rubix.eos.openshift.playground.mq.ActiveMQConfigurer;
+
+import javax.inject.Inject;
 
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.assertj.core.api.Condition;
@@ -32,8 +32,6 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static io.fabric8.kubernetes.assertions.Assertions.assertThat;
 
 @RunWith(Arquillian.class)
 public class KubernetesIntegrationKT {
@@ -52,7 +50,7 @@ public class KubernetesIntegrationKT {
     public static WebArchive createDeployment() {
         return DeltaspikeTestBase.createDeployment()
                 .addClasses(DeltaspikeTestBase.getDeltaSpikeHolders())
-                .addClasses(ActiveMQComponentFactory.class, ActiveMQConfigurer.class);
+                .addClasses(ActiveMQComponentFactory.class);
     }
 
     @Test
